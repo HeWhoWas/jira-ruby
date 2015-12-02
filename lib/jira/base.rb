@@ -484,6 +484,10 @@ module JIRA
     end
 
     def url_with_query_params(url, query_params)
+      self.class.url_with_query_params(url, query_params)
+    end
+
+    def self.url_with_query_params(url, query_params)
       if not query_params.empty?
         "#{url}?#{hash_to_query_string query_params}"
       else
@@ -492,6 +496,10 @@ module JIRA
     end
 
     def hash_to_query_string(query_params)
+      self.class.hash_to_query_string(query_params)
+    end
+
+    def self.hash_to_query_string(query_params)
       query_params.map do |k,v|
         CGI.escape(k.to_s) + "=" + CGI.escape(v.to_s)
       end.join('&')
